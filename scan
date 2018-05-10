@@ -1,0 +1,14 @@
+#
+> file.data
+net="10.7.180."
+priv=( $(cat file.dat) )
+
+for i in {100...103}
+do
+ip="ip="10.7.180.$1"
+#echo $ip
+ping -cl $ip &>>/dev/null && echo priv="$ip+" || echo "$ip-"
+echo $priv
+let "i-=100"
+[${priv[$1]} = $priv] $$ echo "not change" || echo "change"
+done>> file.data
